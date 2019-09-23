@@ -31,18 +31,31 @@ public class PlayerContoller : MonoBehaviour{
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.gameObject.CompareTag("PickUp"))
+        if (other.gameObject.CompareTag("PickUp")){
+		
                
                      other.gameObject.SetActive(false);
 					 count = count + 1;
 					 SetCountText ();
+					 }
+		
+		else if (other.gameObject.CompareTag("Enemy"))
+      {
+          other.gameObject.SetActive(false);
+          count = count - 1;  
+          SetCountText();
+      }
                 
     }
 	void SetCountText()
 	{
 			 countText.text = "Count: " + count.ToString ();
 
-			 if (count >= 13)
+			 if (count == 13) 
+{
+           transform.position = new Vector2(50.0f, 50.0f); 
+}
+			 if (count >= 21)
 			    winText.text = "You win! Game created by Theodore, Karlee!";
 
 	}
